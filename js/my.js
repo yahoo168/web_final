@@ -4,7 +4,7 @@ var end_time;
 var k = 0;
 var j = 0;
 var correct_num = 0;
-var data = ['愚笨', '邪惡', '善良', '美國', '越南', '禮貌', '犯罪', '哈佛大學', '貧窮', '慈善', '梵蒂岡', '緬甸', '慷慨', '帝國主義', '伊斯蘭'];
+var data = ['辛苦', '邪惡', '善良', '美國', '越南', '禮貌', '犯罪', '哈佛大學', '貧窮', '慈善', '梵蒂岡', '緬甸', '慷慨', '義大利黑幫', '伊斯蘭'];
 
 var ans1 = [0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0];
 var ans2 = [0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0];
@@ -19,6 +19,7 @@ var main = () => {
     key = event.keyCode;
     $("#process").text("目前進度" + j + "/ 30");
     var choice;
+    var $read = $("#read")
 
     if (j == 15) {
         time_for_fst = s;
@@ -43,7 +44,7 @@ var main = () => {
                 $("#answer").text("作答結果: 正確");
                 correct_num += 1;
             } else $("#answer").text("作答結果: 錯誤");
-            if (j == 0) $("#answer").text("作答結果");
+            if (j == 0 || j == 15) $("#answer").text("作答結果");
             change(k);
             k += 1;
             j += 1;
@@ -52,12 +53,12 @@ var main = () => {
         //按了下鍵
         else if (key == 40) {
             choice = 1;
-            if (j == 0) $("#answer").text("作答結果");
+
             if (choice == ans[j] && j != 0) {
                 $("#answer").text("作答結果: 正確");
                 correct_num += 1;
             } else $("#answer").text("作答結果: 錯誤");
-            if (j == 0) $("#answer").text("作答結果");
+            if (j == 0 || j == 15) $("#answer").text("作答結果");
             change(k);
             k += 1;
             j += 1;
@@ -83,18 +84,19 @@ var main = () => {
         if (diff >= 50) comment = "你可能是嚴重的種族歧視者";
         if (diff >= 10 && diff < 50) comment = "你有輕微的種族歧視";
         if (diff < 10) comment = "你沒有種族歧視，上輩子大概是曼德拉吧";
-        if (correct_num >= 28) correct = "答對了 " + correct_num + " 題，應該是台大生";
-        if (25 <= correct_num && correct_num < 28) correct = "答錯了 " + (30 - correct_num) + " 題，你應該是學店生";
+        if (correct_num >= 27) correct = "答對了 " + correct_num + " 題，應該是台大生";
+        if (25 <= correct_num && correct_num < 27) correct = "答錯了 " + (30 - correct_num) + " 題，你應該是學店生";
         if (correct_num <= 25) correct = "只對了 " + correct_num + " 題，應該去看眼科";
 
 
 
 
         if (s == 0) {
-            $p1 = $('<p>').append("你忘記按計時器了，重玩吧！")
+            $p1 = $('<p>').append("你忘記按計時器了，看完測驗說明後重玩吧！")
             $p1.addClass("paragragh")
             $("#data").append($h1)
             $("#data").append($p1)
+            $("#data").append($read)
         } else {
             $p1 = $('<p>').append("兩階段的速度差距： " + diff + "%")
             $p2 = $('<p>').append(comment)
@@ -108,9 +110,19 @@ var main = () => {
             $("#data").append($p1)
             $("#data").append($p2)
             $("#data").append($p4)
-
-
+            $("#data").append($read)
         };
+        $("#read").click(function() {
+
+            $('html, body').animate({
+
+                scrollTop: $("#explain").offset().top
+
+            }, "show");
+
+            return false;
+
+        });
 
 
     }
@@ -184,4 +196,6 @@ $(() => {
         event.preventDefault();
     });
     document.onkeydown = main;
+
+
 })
