@@ -1,0 +1,47 @@
+.head {
+    font-size: 1.5cm;
+}
+
+.paragragh {
+    font-size: 1cm;
+}
+
+.paragragh1 {
+    font-size: 1cm;
+    color: black;
+}
+
+.paragragh2 {
+    font-size: 1cm;
+    color: skyblue;
+}
+
+.paragragh3 {
+    font-size: 1cm;
+    color: red;
+}
+
+.container {
+    overflow: hidden;
+}
+
+.right {
+    float: right;
+    width: 100px;
+}
+
+.left {
+    float: left;
+    width: 100px;
+}
+
+.middle {
+    /* float: middle; */
+    widows: 100px;
+    /* margin: 0 100px; */
+}
+
+
+/* #process {
+    background-color: black;
+} */
